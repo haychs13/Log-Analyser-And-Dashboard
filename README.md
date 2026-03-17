@@ -1,4 +1,4 @@
-# Cybersecurity Log Analyser & Dashboard
+# Log Analyser and Dashboard 
 
 A Python/Flask web application that parses common log formats, detects suspicious
 security activity, and presents findings in a live dark-themed dashboard.
@@ -14,11 +14,10 @@ security activity, and presents findings in a live dark-themed dashboard.
 | **Sample data** | Realistic logs included — works out of the box, no real server needed |
 
 ## Quick Start
-
 ```bash
 # 1. Clone / enter the project
-git clone https://github.com/haychs13/Cybersecurity-Project.git
-cd Cybersecurity-Project
+git clone https://github.com/haychs13/Log-Analyser-And-Dashboard.git
+cd Log-Analyser-And-Dashboard
 
 # 2. Create a virtual environment (recommended)
 python -m venv venv
@@ -34,9 +33,8 @@ python app.py
 Open **http://127.0.0.1:5000** in your browser.
 
 ## Project Structure
-
 ```
-Cybersecurity-Project/
+Log-Analyser-And-Dashboard/
 ├── app.py                  Flask entry point & routes
 ├── config.py               Detection thresholds & settings
 ├── requirements.txt
@@ -87,7 +85,6 @@ Flags events from:
 ## Using Your Own Logs
 
 Edit `config.py` and point the `LOG_FILES` paths to your real log files:
-
 ```python
 LOG_FILES = {
     "ssh":     "/var/log/auth.log",
@@ -101,7 +98,6 @@ Click **Re-analyse** in the navbar to reload without restarting the server.
 ## Tuning Thresholds
 
 All detection thresholds live in `config.py`:
-
 ```python
 BRUTE_FORCE_THRESHOLD   = 5    # failures before alerting
 BRUTE_FORCE_WINDOW_SECS = 60

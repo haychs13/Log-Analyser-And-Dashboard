@@ -1,0 +1,284 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- ── Summary cards ─────────────────────────────────────────────────── -->
+<div class="row g-3 mb-4">
+
+  <div class="col-6 col-md-3">
+    <div class="card text-center border-secondary h-100">
+      <div class="card-body">
+        <div class="fs-1 fw-bold text-info">{{ data.total_events }}</div>
+        <div class="text-muted small"><i class="bi bi-list-ul me-1"></i>Total Events</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card text-center border-secondary h-100">
+      <div class="card-body">
+        <div class="fs-1 fw-bold text-primary">{{ data.unique_ips }}</div>
+        <div class="text-muted small"><i class="bi bi-globe me-1"></i>Unique IPs</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card text-center border-secondary h-100">
+      <div class="card-body">
+        <div class="fs-1 fw-bold text-warning">{{ data.total_alerts }}</div>
+        <div class="text-muted small"><i class="bi bi-bell me-1"></i>Total Alerts</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6 col-md-3">
+    <div class="card text-center border-secondary h-100">
+      <div class="card-body">
+        <div class="fs-1 fw-bold text-danger">{{ data.critical_alerts }}</div>
+        <div class="text-muted small"><i class="bi bi-exclamation-octagon me-1"></i>Critical</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Severity breakdown pills ───────────────────────────────────────── -->
+<div class="d-flex gap-2 mb-4 flex-wrap">
+  <span class="badge bg-danger fs-6 px-3 py-2">
+    <i class="bi bi-exclamation-octagon me-1"></i>Critical: {{ data.critical_alerts }}
+  </span>
+  <span class="badge bg-warning text-dark fs-6 px-3 py-2">
+    <i class="bi bi-exclamation-triangle me-1"></i>High: {{ data.high_alerts }}
+  </span>
+  <span class="badge bg-info text-dark fs-6 px-3 py-2">
+    <i class="bi bi-info-circle me-1"></i>Medium: {{ data.medium_alerts }}
+  </span>
+  <span class="badge bg-secondary fs-6 px-3 py-2">
+    <i class="bi bi-check-circle me-1"></i>Low: {{ data.low_alerts }}
+  </span>
+  {% if data.parse_errors %}
+  <span class="badge bg-dark border border-danger fs-6 px-3 py-2 text-danger">
+    <i class="bi bi-bug me-1"></i>Parse errors: {{ data.parse_errors | length }}
+  </span>
+  {% endif %}
+</div>
+
+<!-- ── Charts row 1 ───────────────────────────────────────────────────── -->
+<div class="row g-3 mb-4">
+
+  <!-- Events over time (line chart) -->
+  <div class="col-12 col-lg-8">
+    <div class="card border-secondary h-100">
+      <div class="card-header border-secondary">
+        <i class="bi bi-graph-up me-2 text-info"></i>Events Over Time
+      </div>
+      <div class="card-body">
+        <canvas id="chartTimeline" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event type doughnut -->
+  <div class="col-12 col-lg-4">
+    <div class="card border-secondary h-100">
+      <div class="card-header border-secondary">
+        <i class="bi bi-pie-chart me-2 text-warning"></i>Event Types
+      </div>
+      <div class="card-body d-flex align-items-center justify-content-center">
+        <canvas id="chartEventTypes" style="max-height:260px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Charts row 2 ───────────────────────────────────────────────────── -->
+<div class="row g-3 mb-4">
+
+  <!-- Top IPs (horizontal bar) -->
+  <div class="col-12 col-lg-7">
+    <div class="card border-secondary h-100">
+      <div class="card-header border-secondary">
+        <i class="bi bi-bar-chart-horizontal me-2 text-danger"></i>Top Source IPs
+      </div>
+      <div class="card-body">
+        <canvas id="chartTopIPs" height="160"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Log source pie -->
+  <div class="col-12 col-lg-5">
+    <div class="card border-secondary h-100">
+      <div class="card-header border-secondary">
+        <i class="bi bi-hdd-stack me-2 text-success"></i>Log Sources
+      </div>
+      <div class="card-body d-flex align-items-center justify-content-center">
+        <canvas id="chartSources" style="max-height:260px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── Recent alerts preview ──────────────────────────────────────────── -->
+<div class="card border-secondary mb-4">
+  <div class="card-header border-secondary d-flex justify-content-between align-items-center">
+    <span><i class="bi bi-bell-fill me-2 text-warning"></i>Recent Alerts</span>
+    <a href="{{ url_for('alerts_page') }}" class="btn btn-sm btn-outline-secondary">
+      View all <i class="bi bi-arrow-right ms-1"></i>
+    </a>
+  </div>
+  <div class="card-body p-0">
+    {% if data.alerts %}
+    <div class="table-responsive">
+      <table class="table table-dark table-hover table-sm mb-0">
+        <thead class="table-secondary">
+          <tr>
+            <th>Severity</th>
+            <th>Category</th>
+            <th>Source IP</th>
+            <th>Description</th>
+            <th>Count</th>
+            <th>First Seen</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for alert in data.alerts[:8] %}
+          <tr class="alert-row-{{ alert.severity }}">
+            <td>
+              {% if alert.severity == 'critical' %}
+                <span class="badge bg-danger">Critical</span>
+              {% elif alert.severity == 'high' %}
+                <span class="badge bg-warning text-dark">High</span>
+              {% elif alert.severity == 'medium' %}
+                <span class="badge bg-info text-dark">Medium</span>
+              {% else %}
+                <span class="badge bg-secondary">Low</span>
+              {% endif %}
+            </td>
+            <td>
+              <span class="text-capitalize">{{ alert.category | replace('_', ' ') }}</span>
+            </td>
+            <td><code class="text-info">{{ alert.source_ip }}</code></td>
+            <td class="text-muted small">{{ alert.description }}</td>
+            <td><span class="badge bg-secondary">{{ alert.count }}</span></td>
+            <td class="text-muted small">{{ alert.first_seen.strftime('%H:%M:%S') }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="text-center text-muted py-4">
+      <i class="bi bi-check-circle-fill fs-3 text-success"></i>
+      <p class="mt-2">No alerts detected.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ── Data from Flask ──────────────────────────────────────────────────────
+const hours        = {{ data.hours | tojson }};
+const eventsPerHr  = {{ data.events_per_hour | tojson }};
+const eventTypes   = {{ data.event_type_counts | tojson }};
+const topIPs       = {{ data.top_ips | tojson }};
+const sources      = {{ data.source_counts | tojson }};
+
+const PALETTE = [
+  "#e74c3c","#e67e22","#f1c40f","#2ecc71",
+  "#1abc9c","#3498db","#9b59b6","#34495e",
+  "#e91e63","#00bcd4"
+];
+
+// ── Timeline ─────────────────────────────────────────────────────────────
+new Chart(document.getElementById("chartTimeline"), {
+  type: "line",
+  data: {
+    labels: hours,
+    datasets: [{
+      label: "Events",
+      data: eventsPerHr,
+      borderColor: "#3498db",
+      backgroundColor: "rgba(52,152,219,0.15)",
+      fill: true,
+      tension: 0.4,
+      pointRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: "#adb5bd" }, grid: { color: "#2d3748" } },
+      y: { ticks: { color: "#adb5bd" }, grid: { color: "#2d3748" }, beginAtZero: true }
+    }
+  }
+});
+
+// ── Event Types doughnut ─────────────────────────────────────────────────
+const etLabels = Object.keys(eventTypes).map(k => k.replace(/_/g," "));
+const etValues = Object.values(eventTypes);
+new Chart(document.getElementById("chartEventTypes"), {
+  type: "doughnut",
+  data: {
+    labels: etLabels,
+    datasets: [{ data: etValues, backgroundColor: PALETTE }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: "bottom", labels: { color: "#adb5bd", boxWidth: 12 } }
+    }
+  }
+});
+
+// ── Top IPs bar ───────────────────────────────────────────────────────────
+const ipLabels = topIPs.map(x => x[0]);
+const ipCounts = topIPs.map(x => x[1]);
+new Chart(document.getElementById("chartTopIPs"), {
+  type: "bar",
+  data: {
+    labels: ipLabels,
+    datasets: [{
+      label: "Events",
+      data: ipCounts,
+      backgroundColor: "#e74c3c",
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    indexAxis: "y",
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { color: "#adb5bd" }, grid: { color: "#2d3748" }, beginAtZero: true },
+      y: { ticks: { color: "#adb5bd", font: { family: "monospace" } }, grid: { color: "#2d3748" } }
+    }
+  }
+});
+
+// ── Log sources pie ───────────────────────────────────────────────────────
+const srcLabels = Object.keys(sources).map(k => k.charAt(0).toUpperCase() + k.slice(1));
+const srcValues = Object.values(sources);
+new Chart(document.getElementById("chartSources"), {
+  type: "pie",
+  data: {
+    labels: srcLabels,
+    datasets: [{ data: srcValues, backgroundColor: ["#3498db","#e67e22","#9b59b6"] }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: "bottom", labels: { color: "#adb5bd", boxWidth: 12 } }
+    }
+  }
+});
+</script>
+{% endblock %}

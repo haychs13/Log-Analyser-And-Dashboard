@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% block title %}Alerts{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h4 class="mb-0">
+    <i class="bi bi-bell-fill me-2 text-warning"></i>
+    All Alerts
+    <span class="badge bg-secondary ms-2">{{ data.alerts | length }}</span>
+  </h4>
+  <div class="d-flex gap-2">
+    <!-- Severity filter buttons -->
+    <button class="btn btn-sm btn-outline-secondary filter-btn active" data-sev="all">All</button>
+    <button class="btn btn-sm btn-outline-danger   filter-btn" data-sev="critical">Critical</button>
+    <button class="btn btn-sm btn-outline-warning  filter-btn" data-sev="high">High</button>
+    <button class="btn btn-sm btn-outline-info     filter-btn" data-sev="medium">Medium</button>
+    <button class="btn btn-sm btn-outline-secondary filter-btn" data-sev="low">Low</button>
+  </div>
+</div>
+
+{% if data.alerts %}
+
+<div class="accordion" id="alertsAccordion">
+  {% for alert in data.alerts %}
+  <div class="accordion-item border-secondary alert-card-{{ alert.severity }} mb-2"
+       data-sev="{{ alert.severity }}">
+
+    <!-- Accordion header -->
+    <h2 class="accordion-header">
+      <button class="accordion-button collapsed bg-dark text-light border-0"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#alert-{{ loop.index }}">
+
+        <div class="d-flex align-items-center gap-3 w-100">
+          <!-- Severity badge -->
+          {% if alert.severity == 'critical' %}
+            <span class="badge bg-danger px-2 py-1">Critical</span>
+          {% elif alert.severity == 'high' %}
+            <span class="badge bg-warning text-dark px-2 py-1">High</span>
+          {% elif alert.severity == 'medium' %}
+            <span class="badge bg-info text-dark px-2 py-1">Medium</span>
+          {% else %}
+            <span class="badge bg-secondary px-2 py-1">Low</span>
+          {% endif %}
+
+          <!-- Category -->
+          <span class="badge bg-dark border border-secondary text-capitalize">
+            {% if alert.category == 'brute_force' %}
+              <i class="bi bi-key-fill me-1"></i>Brute Force
+            {% elif alert.category == 'scan' %}
+              <i class="bi bi-search me-1"></i>Scan
+            {% else %}
+              <i class="bi bi-geo-alt-fill me-1"></i>Unusual IP
+            {% endif %}
+          </span>
+
+          <!-- IP -->
+          <code class="text-info">{{ alert.source_ip }}</code>
+
+          <!-- Description (truncated on small screens) -->
+          <span class="text-muted small d-none d-md-block">{{ alert.description }}</span>
+
+          <!-- Spacer -->
+          <span class="ms-auto me-3 text-muted small">
+            {{ alert.count }} event(s) &middot;
+            {{ alert.first_seen.strftime('%H:%M:%S') }}–{{ alert.last_seen.strftime('%H:%M:%S') }}
+          </span>
+        </div>
+      </button>
+    </h2>
+
+    <!-- Accordion body -->
+    <div id="alert-{{ loop.index }}" class="accordion-collapse collapse"
+         data-bs-parent="">
+      <div class="accordion-body bg-dark border-top border-secondary">
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <table class="table table-sm table-dark mb-0">
+              <tbody>
+                <tr><th class="text-muted" style="width:35%">Source IP</th>
+                    <td><code class="text-info">{{ alert.source_ip }}</code></td></tr>
+                <tr><th class="text-muted">Category</th>
+                    <td class="text-capitalize">{{ alert.category | replace('_',' ') }}</td></tr>
+                <tr><th class="text-muted">Severity</th>
+                    <td>{{ alert.severity | capitalize }}</td></tr>
+                <tr><th class="text-muted">Event count</th>
+                    <td>{{ alert.count }}</td></tr>
+                <tr><th class="text-muted">First seen</th>
+                    <td>{{ alert.first_seen.strftime('%Y-%m-%d %H:%M:%S') }}</td></tr>
+                <tr><th class="text-muted">Last seen</th>
+                    <td>{{ alert.last_seen.strftime('%Y-%m-%d %H:%M:%S') }}</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <div class="alert alert-dark border border-secondary small mb-0 h-100">
+              <strong>Description:</strong><br>
+              {{ alert.description }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sample log entries -->
+        {% if alert.entries %}
+        <h6 class="text-muted mb-2">
+          <i class="bi bi-terminal me-1"></i>
+          Sample log entries (showing up to 5)
+        </h6>
+        <div class="font-monospace small bg-black rounded p-3"
+             style="max-height:200px; overflow-y:auto; white-space:pre-wrap;">
+          {%- for entry in alert.entries[:5] -%}
+          <div class="log-line log-{{ entry.event_type }}">{{ entry.raw }}</div>
+          {%- endfor -%}
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<div class="text-center text-muted py-5">
+  <i class="bi bi-check-circle-fill fs-1 text-success"></i>
+  <p class="mt-3 fs-5">No alerts detected in the current log files.</p>
+  <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary mt-2">
+    <i class="bi bi-arrow-left me-1"></i>Back to Dashboard
+  </a>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ── Severity filter ───────────────────────────────────────────────────────
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const sev = btn.dataset.sev;
+    document.querySelectorAll("#alertsAccordion .accordion-item").forEach(card => {
+      card.style.display = (sev === "all" || card.dataset.sev === sev) ? "" : "none";
+    });
+  });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,74 @@
+TimeCreated,EventID,Level,Source,SubjectUserName,TargetUserName,IpAddress,IpPort,LogonType,WorkstationName,Description
+2026-03-14 06:00:05,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,51200,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 06:05:22,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,51300,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 06:10:00,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,51200,3,WORKSTATION-01,Special privileges assigned to new logon
+2026-03-14 06:15:44,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,51400,3,SERVER-01,An account was successfully logged on
+2026-03-14 06:20:11,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,45.33.32.156,43100,3,-,An account failed to log on
+2026-03-14 06:25:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,51500,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 06:30:00,4648,Information,Microsoft-Windows-Security-Auditing,alice,devops,10.0.0.10,51600,3,WORKSTATION-01,A logon was attempted using explicit credentials
+2026-03-14 06:35:17,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,51300,3,WORKSTATION-02,An account was logged off
+2026-03-14 06:40:22,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,51700,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 06:45:00,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,89.248.167.131,33821,3,-,An account failed to log on
+2026-03-14 06:50:11,4776,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,51800,3,WORKSTATION-04,The domain controller attempted to validate credentials
+2026-03-14 06:55:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,51800,3,WORKSTATION-04,An account was successfully logged on
+2026-03-14 07:00:05,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,51900,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 07:05:22,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,51400,3,SERVER-01,Special privileges assigned to new logon
+2026-03-14 07:10:44,4720,Information,Microsoft-Windows-Security-Auditing,devops,svc_deploy,10.0.0.5,51400,3,SERVER-01,A user account was created
+2026-03-14 07:15:00,4724,Information,Microsoft-Windows-Security-Auditing,devops,alice,10.0.0.5,51400,3,SERVER-01,An attempt was made to reset an account password
+2026-03-14 07:20:33,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,51900,3,WORKSTATION-01,An account was logged off
+2026-03-14 07:25:11,4778,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,51500,3,WORKSTATION-03,A session was reconnected to a Window Station
+2026-03-14 07:30:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52000,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 07:35:44,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,91.121.87.45,55000,3,-,An account failed to log on
+2026-03-14 07:40:22,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,52100,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 07:45:00,4776,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,52100,3,WORKSTATION-02,The domain controller attempted to validate credentials
+2026-03-14 07:50:11,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,52200,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 07:55:33,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,51500,3,WORKSTATION-03,An account was logged off
+2026-03-14 08:00:05,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,52300,3,SERVER-01,An account was successfully logged on
+2026-03-14 08:05:22,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,52300,3,SERVER-01,Special privileges assigned to new logon
+2026-03-14 08:10:44,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,185.220.101.42,44000,3,-,An account failed to log on
+2026-03-14 08:15:00,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,185.220.101.42,44001,3,-,An account failed to log on
+2026-03-14 08:20:11,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,52400,3,WORKSTATION-04,An account was successfully logged on
+2026-03-14 08:25:33,4779,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,52100,3,WORKSTATION-02,A session was disconnected from a Window Station
+2026-03-14 08:30:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52500,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 08:35:22,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,80.82.77.33,43200,3,-,An account failed to log on
+2026-03-14 08:40:44,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,52600,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 08:45:00,4722,Information,Microsoft-Windows-Security-Auditing,devops,svc_deploy,10.0.0.5,52300,3,SERVER-01,A user account was enabled
+2026-03-14 08:50:11,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,52400,3,WORKSTATION-04,An account was logged off
+2026-03-14 08:55:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,52700,3,WORKSTATION-04,An account was successfully logged on
+2026-03-14 09:00:01,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39001,3,-,An account failed to log on
+2026-03-14 09:00:11,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39002,3,-,An account failed to log on
+2026-03-14 09:00:21,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39003,3,-,An account failed to log on
+2026-03-14 09:00:31,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39004,3,-,An account failed to log on
+2026-03-14 09:00:41,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39005,3,-,An account failed to log on
+2026-03-14 09:00:51,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39006,3,-,An account failed to log on
+2026-03-14 09:01:01,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39007,3,-,An account failed to log on
+2026-03-14 09:01:11,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39008,3,-,An account failed to log on
+2026-03-14 09:01:21,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39009,3,-,An account failed to log on
+2026-03-14 09:01:31,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39010,3,-,An account failed to log on
+2026-03-14 09:01:41,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39011,3,-,An account failed to log on
+2026-03-14 09:01:51,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39012,3,-,An account failed to log on
+2026-03-14 09:02:00,4740,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,203.0.113.45,39012,3,DC-01,A user account was locked out
+2026-03-14 09:05:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52800,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 09:10:22,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52800,3,WORKSTATION-01,Special privileges assigned to new logon
+2026-03-14 09:15:44,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,52900,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 09:20:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,53000,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 09:25:11,4648,Information,Microsoft-Windows-Security-Auditing,devops,alice,10.0.0.5,52300,3,SERVER-01,A logon was attempted using explicit credentials
+2026-03-14 09:30:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,53100,3,WORKSTATION-04,An account was successfully logged on
+2026-03-14 09:35:00,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,62.210.180.229,44300,3,-,An account failed to log on
+2026-03-14 09:40:22,4776,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52800,3,WORKSTATION-01,The domain controller attempted to validate credentials
+2026-03-14 09:45:44,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,52900,3,WORKSTATION-02,An account was logged off
+2026-03-14 09:50:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,53200,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 09:55:11,4778,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,53100,3,WORKSTATION-04,A session was reconnected to a Window Station
+2026-03-14 10:00:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,53300,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 10:05:00,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,52300,3,SERVER-01,Special privileges assigned to new logon
+2026-03-14 10:10:22,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,53400,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 10:15:44,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,52600,3,WORKSTATION-03,An account was logged off
+2026-03-14 10:20:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,carol,10.0.0.20,53500,3,WORKSTATION-03,An account was successfully logged on
+2026-03-14 10:25:11,4779,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,52800,3,WORKSTATION-01,A session was disconnected from a Window Station
+2026-03-14 10:30:33,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,alice,10.0.0.10,53600,3,WORKSTATION-01,An account was successfully logged on
+2026-03-14 10:35:00,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,bob,10.0.0.12,53700,3,WORKSTATION-02,An account was successfully logged on
+2026-03-14 10:40:22,4625,Warning,Microsoft-Windows-Security-Auditing,SYSTEM,administrator,178.62.80.12,44400,3,-,An account failed to log on
+2026-03-14 10:45:44,4776,Information,Microsoft-Windows-Security-Auditing,SYSTEM,dave,10.0.0.22,53100,3,WORKSTATION-04,The domain controller attempted to validate credentials
+2026-03-14 10:50:00,4634,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,52300,3,SERVER-01,An account was logged off
+2026-03-14 10:55:11,4624,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,53800,3,SERVER-01,An account was successfully logged on
+2026-03-14 11:00:00,4672,Information,Microsoft-Windows-Security-Auditing,SYSTEM,devops,10.0.0.5,53800,3,SERVER-01,Special privileges assigned to new logon

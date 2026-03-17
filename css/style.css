@@ -1,0 +1,81 @@
+/* ── CyberDash — custom styles ──────────────────────────────────────── */
+
+:root {
+  --cyber-bg:      #0d1117;
+  --cyber-surface: #161b22;
+  --cyber-border:  #30363d;
+  --cyber-red:     #e74c3c;
+  --cyber-orange:  #e67e22;
+  --cyber-yellow:  #f1c40f;
+  --cyber-blue:    #3498db;
+  --cyber-green:   #2ecc71;
+}
+
+body {
+  background-color: var(--cyber-bg);
+  color: #c9d1d9;
+  font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+/* Cards */
+.card {
+  background-color: var(--cyber-surface);
+  border-color: var(--cyber-border) !important;
+}
+
+.card-header {
+  background-color: rgba(0,0,0,0.25);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+}
+
+/* Alert table row colours */
+.alert-row-critical td { border-left: 3px solid var(--cyber-red); }
+.alert-row-high     td { border-left: 3px solid var(--cyber-orange); }
+.alert-row-medium   td { border-left: 3px solid var(--cyber-yellow); }
+.alert-row-low      td { border-left: 3px solid #6c757d; }
+
+/* Accordion alert card left-border accent */
+.alert-card-critical { border-left: 4px solid var(--cyber-red)    !important; }
+.alert-card-high     { border-left: 4px solid var(--cyber-orange) !important; }
+.alert-card-medium   { border-left: 4px solid var(--cyber-yellow) !important; }
+.alert-card-low      { border-left: 4px solid #6c757d             !important; }
+
+/* Accordion button */
+.accordion-button::after {
+  filter: invert(1);
+}
+.accordion-button:not(.collapsed) {
+  background-color: rgba(255,255,255,0.05) !important;
+  box-shadow: none;
+}
+
+/* Log line colours */
+.log-line          { color: #8b949e; margin-bottom: 2px; }
+.log-failed_login  { color: #e74c3c; }
+.log-success_login { color: #2ecc71; }
+.log-suspicious_request { color: #f1c40f; }
+.log-error_request { color: #e67e22; }
+.log-account_lockout { color: #e74c3c; font-weight: bold; }
+
+/* Navbar */
+.navbar-brand { letter-spacing: 0.05em; font-size: 1.1rem; }
+
+/* Summary card value */
+.card-body .fs-1 { font-size: 2.25rem !important; line-height: 1.1; }
+
+/* Tables */
+.table-dark th { color: #8b949e; font-weight: 500; font-size: 0.78rem;
+                 text-transform: uppercase; letter-spacing: 0.05em; }
+.table-dark td { font-size: 0.875rem; vertical-align: middle; }
+
+/* Filter buttons active state */
+.filter-btn.active { opacity: 1; }
+.filter-btn:not(.active) { opacity: 0.6; }
+
+/* Scrollbar (webkit) */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--cyber-bg); }
+::-webkit-scrollbar-thumb { background: var(--cyber-border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #444c56; }

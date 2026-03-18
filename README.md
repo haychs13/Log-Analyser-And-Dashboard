@@ -14,23 +14,35 @@ security activity, and presents findings in a live dark-themed dashboard.
 | **Sample data** | Realistic logs included — works out of the box, no real server needed |
 
 ## Quick Start
+
+### Windows (No Git Required)
+1. Click the green **Code** button on this page → **Download ZIP**
+2. Extract the ZIP — you'll get a folder inside a folder, go into the inner one
+3. Open PowerShell and run:
+```powershell
+cd "C:\Users\YourName\Downloads\Log-Analyser-And-Dashboard-main\Log-Analyser-And-Dashboard-main"
+python app.py
+```
+4. Open **http://127.0.0.1:5000** in your browser
+
+> Replace `YourName` with your actual Windows username.
+
+### Clone (Git)
 ```bash
-# 1. Clone / enter the project
 git clone https://github.com/haychs13/Log-Analyser-And-Dashboard.git
 cd Log-Analyser-And-Dashboard
-
-# 2. Create a virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Run
 python app.py
 ```
 
 Open **http://127.0.0.1:5000** in your browser.
+
+### Optional: Virtual Environment
+```bash
+python -m venv venv
+venv\Scripts\activate      # Windows
+pip install -r requirements.txt
+python app.py
+```
 
 ## Project Structure
 ```

@@ -1,6 +1,6 @@
 import ipaddress
 from collections import defaultdict
-from analyzers.base import Alert
+from analysers.base import Alert
 
 # RFC 5737 documentation ranges — always flag in a real environment
 _ALWAYS_FLAG = [

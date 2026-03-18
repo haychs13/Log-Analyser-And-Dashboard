@@ -11,7 +11,7 @@ from datetime import datetime
 from flask import Flask, jsonify, render_template, redirect, url_for
 
 import config
-from analyzers import parse_ssh_log, parse_apache_log, parse_windows_log
+from analysers import parse_ssh_log, parse_apache_log, parse_windows_log
 from detectors import detect_brute_force, detect_scan, detect_unusual_ip
 
 app = Flask(__name__)

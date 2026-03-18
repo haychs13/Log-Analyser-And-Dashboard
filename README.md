@@ -44,11 +44,11 @@ Log-Analyser-And-Dashboard/
 │   ├── sample_apache.log   Apache Combined Log Format
 │   └── sample_windows.log  Windows Event Log CSV export
 │
-├── analyzers/              Log parsers
+├── analysers/              Log parsers
 │   ├── base.py             LogEntry & Alert dataclasses
-│   ├── ssh_analyzer.py
-│   ├── apache_analyzer.py
-│   └── windows_analyzer.py
+│   ├── ssh_analyser.py
+│   ├── apache_analyser.py
+│   └── windows_analyser.py
 │
 ├── detectors/              Threat detection rules
 │   ├── brute_force.py      Failed-login burst detection

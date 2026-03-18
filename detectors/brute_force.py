@@ -1,6 +1,6 @@
 from collections import defaultdict
 from datetime import timedelta
-from analyzers.base import Alert
+from analysers.base import Alert
 
 
 def detect_brute_force(

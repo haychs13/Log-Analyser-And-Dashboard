@@ -14,7 +14,7 @@ security activity, and presents findings in a live dark-themed dashboard.
 | **Sample data** | Realistic logs included — works out of the box, no real server needed |
 
 ## Quick Start
-
+# Make sure to have python installed
 ### Windows (No Git Required)
 1. Click the green **Code** button on this page → **Download ZIP**
 2. Extract the ZIP — you'll get a folder inside a folder, go into the inner one

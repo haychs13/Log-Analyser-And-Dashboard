@@ -2,6 +2,7 @@
 
 A Python/Flask web application that parses common log formats, detects suspicious
 security activity, and presents findings in a live dark-themed dashboard.
+Built By Hayder Sayyid
 
 ## Features
 

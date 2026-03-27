@@ -15,8 +15,10 @@ data visualisation skills in a security context.
 | **Alerts page** | Filterable by severity with expandable log-entry details |
 | **Sample data** | Realistic logs included — works out of the box, no real server needed |
 
+
+
 ## Quick Start
-#### Make sure to have python installed
+#### Make sure you have **Python** and **pip** installed. You can download Python from https://python.org or from the windows store — pip is included automatically with either one.
 ### Windows (No Git Required)
 1. Click the green **Code** button on this page → **Download ZIP**
 2. Extract the ZIP — you'll get a folder inside a folder, go into the inner one

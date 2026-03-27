@@ -18,7 +18,7 @@ data visualisation skills in a security context.
 
 
 ## Quick Start
-#### Make sure you have **Python** and **pip** installed. You can download Python from https://python.org or from the windows store — pip is included automatically with either one.
+Make sure you have **Python** and **pip** installed. You can download Python from https://python.org or from the windows store — pip is included automatically with either one.
 ### Windows (No Git Required)
 1. Click the green **Code** button on this page → **Download ZIP**
 2. Extract the ZIP — you'll get a folder inside a folder, go into the inner one

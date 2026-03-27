@@ -23,6 +23,7 @@ data visualisation skills in a security context.
 3. Open PowerShell and run:
 ```powershell
 cd "C:\Users\YourName\Downloads\Log-Analyser-And-Dashboard-main\Log-Analyser-And-Dashboard-main"
+pip install -r requirements.txt
 python app.py
 ```
 4. Open **http://127.0.0.1:5000** in your browser
@@ -33,6 +34,7 @@ python app.py
 ```bash
 git clone https://github.com/haychs13/Log-Analyser-And-Dashboard.git
 cd Log-Analyser-And-Dashboard
+pip install -r requirements.txt
 python app.py
 ```
 

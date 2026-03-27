@@ -5,7 +5,8 @@ security activity, and presents findings in a live dark-themed dashboard.
 Built By Hayder Sayyid
 
 ## Features
-
+Built to demonstrate log parsing, threat detection and 
+data visualisation skills in a security context.
 | Feature | Detail |
 |---|---|
 | **Log parsers** | SSH (`auth.log`), Apache/Nginx (Combined Log Format), Windows Event Log (CSV) |
